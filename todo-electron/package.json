@@ -1,0 +1,14 @@
+{
+  "name": "todo-electron",
+  "version": "1.0.0",
+  "description": "A free and open source Todo application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Denis Nutiu",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^23.2.0"
+  }
+}

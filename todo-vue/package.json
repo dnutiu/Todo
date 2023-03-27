@@ -5,9 +5,9 @@
   "main": "main.js",
   "author": "Denis Nutiu",
   "scripts": {
-    "electron": "electron .",
     "dev": "vite",
     "build": "run-p type-check build-only",
+    "build-electron": "run-p type-check _electron",
     "preview": "vite preview",
     "test:unit": "vitest",
     "test:e2e": "start-server-and-test preview http://localhost:4173 'cypress run --e2e'",
@@ -15,6 +15,7 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "_electron": "vite --config vite.electron.config.ts build",
     "format": "prettier --write src/"
   },
   "dependencies": {

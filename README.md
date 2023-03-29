@@ -1,6 +1,7 @@
 # Todo
-A free and open source ToDo application
+
+A free and open source Todo application
 
 ---
 
-Sponsored by [nuculabs.dev](https://nuculabs.dev)
+Brewed by [nuculabs.dev](https://nuculabs.dev)

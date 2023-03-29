@@ -1,13 +1,11 @@
 <template>
-<h1>Home view</h1>
+  <h1>Home view</h1>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 export default {
-  name: 'HomeView.vue'
+  name: "HomeView.vue"
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

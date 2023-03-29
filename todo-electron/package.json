@@ -9,6 +9,7 @@
   "author": "Denis Nutiu",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^18.15.11",
     "electron": "^23.2.0"
   }
 }

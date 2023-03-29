@@ -1,5 +1,6 @@
 <template>
   <h1>Home view</h1>
+  <RouterLink to="about">About</RouterLink>
 </template>
 
 <script lang="ts">

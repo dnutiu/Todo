@@ -23,6 +23,10 @@ app.whenReady().then(() => {
     });
 });
 
+process.on('unhandledRejection', (error) => {
+    console.error(error)
+})
+
 app.on("window-all-closed", () => {
     if (process.platform !== "darwin") {
         app.quit();

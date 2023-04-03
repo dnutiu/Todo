@@ -1,23 +1,22 @@
 <template>
-  <v-form ref="taskInputForm" class="d-flex">
+  <div class="d-flex">
     <v-text-field
       clearable
+      :error="false"
+      :error-messages="taskNameErrorMessage"
       v-model="taskName"
-      :rules="taskNameRules"
       label="Task Name"
       single-line
-      required
       prepend-inner-icon="mdi-checkbox-marked-circle-plus-outline"
       @keydown.enter="handleAddTask"
     ></v-text-field>
-    <v-btn ref="focusTrap" class="mx-5" icon="mdi-send" @click="handleAddTask" />
-  </v-form>
+    <v-btn class="mx-5" icon="mdi-send" @click="handleAddTask" />
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue"
 import { useTasksStore } from "@/stores/tasks"
-import type { VTextField } from "vuetify/components"
 
 export default defineComponent({
   name: "NewTask",
@@ -27,32 +26,33 @@ export default defineComponent({
   },
   data() {
     return {
-      valid: false,
-      taskName: "",
-      taskNameRules: [
-        (value: any) => {
-          if (value) {
-            return true
-          }
-          return "Task name is required"
-        }
-      ]
+      taskNameHasError: false,
+      taskNameErrorMessage: "",
+      taskName: ""
     }
   },
   methods: {
     async handleAddTask() {
       try {
         let taskTitle = this.taskName
+        this.taskNameHasError = false
+        this.taskNameErrorMessage = ""
         if (taskTitle === "" || taskTitle == null) {
+          this.taskNameHasError = true
+          this.taskNameErrorMessage = "Task Name is required."
           return
         }
         await this.tasksStore.addTask({
           title: taskTitle
         })
       } finally {
-        ;(this.$refs.taskInputForm as VTextField).reset()
+        this.taskName = ""
+        let activeItems = document.querySelectorAll("#task-list > .v-list-item--active")
+        for (let item of activeItems) {
+          item.classList.remove("v-list-item--active")
+        }
         let lastItem = document.querySelector("#task-list > div:last-child") as HTMLElement
-        lastItem.focus()
+        lastItem.classList.add("v-list-item--active")
       }
     }
   }

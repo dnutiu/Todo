@@ -1,5 +1,5 @@
 <template>
-  <v-list lines="three">
+  <v-list :lines="'two'" id="task-list">
     <v-list-subheader>Tasks</v-list-subheader>
 
     <v-list-item
@@ -8,6 +8,7 @@
       :value="item.id"
       rounded="xl"
       active-class="asd"
+      class="task-item"
     >
       <template v-slot:prepend>
         <v-list-item-action start>
@@ -29,9 +30,15 @@ import { defineComponent } from "vue"
 import DoneCheckbox from "@/components/TaskListView/DoneCheckbox.vue"
 import type { Task } from "@/domain/task"
 import { useTasksStore } from "@/stores/tasks"
+import { id } from "vuetify/locale"
 
 export default defineComponent({
-  name: "TasksView",
+  name: "TasksListView",
+  computed: {
+    id() {
+      return id
+    }
+  },
   components: { DoneCheckbox },
   setup() {
     const tasksStore = useTasksStore()

@@ -4,19 +4,22 @@
       <v-col sm="12" md="4">
         <h1>Da</h1>
       </v-col>
-      <v-col sm="12" md="6">
+      <v-divider vertical></v-divider>
+      <v-col sm="12" md="4">
         <v-row>
           <v-col>
-            <h2 class="pl-10">Add new task.</h2>
+            <NewTask />
           </v-col>
         </v-row>
         <v-row>
           <v-col>
-            <TasksView />
+            <TasksListView />
           </v-col>
         </v-row>
       </v-col>
-      <v-col md="4" hidden="hidden">
+      <v-divider vertical></v-divider>
+      <!--      Hide this when size is small and redirect directly to task-->
+      <v-col md="4">
         <h1>da</h1>
       </v-col>
     </v-row>
@@ -24,43 +27,44 @@
 </template>
 
 <script lang="ts">
-import TasksView from "@/components/TaskListView/TasksListView.vue"
+import TasksListView from "@/components/TaskListView/TasksListView.vue"
 import { defineComponent } from "vue"
 import { useTasksStore } from "@/stores/tasks"
+import NewTask from "@/components/TaskListView/NewTask.vue"
 
 export default defineComponent({
   name: "HomeView.vue",
-  components: { TasksView },
+  components: { NewTask, TasksListView },
   setup() {
     const tasksStore = useTasksStore()
     return { tasksStore: tasksStore }
   },
   created() {
     // Add random tasks.
-    let items = [
-      {
-        id: 1,
-        title: "Notifications",
-        subtitle: "Notify me about updates to apps or games that I downloaded",
-        isDone: false
-      },
-      {
-        id: 2,
-        title: "Sound",
-        subtitle: "Auto-update apps at any time. Data charges may apply",
-        isDone: true
-      },
-      {
-        id: 3,
-        title: "Auto-add widgets",
-        subtitle: "Automatically add home screen widgets when downloads complete",
-        isDone: false
-      }
-    ]
-    let self = this
-    items.forEach((task) => {
-      self.tasksStore.addTask(task)
-    })
+    // let items = [
+    //   {
+    //     id: 1,
+    //     title: "Notifications",
+    //     subtitle: "Notify me about updates to apps or games that I downloaded",
+    //     isDone: false
+    //   },
+    //   {
+    //     id: 2,
+    //     title: "Sound",
+    //     subtitle: "Auto-update apps at any time. Data charges may apply",
+    //     isDone: true
+    //   },
+    //   {
+    //     id: 3,
+    //     title: "Auto-add widgets",
+    //     subtitle: "Automatically add home screen widgets when downloads complete",
+    //     isDone: false
+    //   }
+    // ]
+    // let self = this
+    // items.forEach((task) => {
+    //   self.tasksStore.addTask(task)
+    // })
   }
 })
 </script>

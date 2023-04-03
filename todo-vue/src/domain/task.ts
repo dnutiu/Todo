@@ -1,6 +1,7 @@
 export interface Task {
-  id: number
+  id?: number
   title: string
+  createdDateMs?: number
   subtitle?: string
-  isDone: boolean
+  isDone?: boolean
 }

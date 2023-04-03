@@ -1,7 +1,7 @@
 <template>
-  <v-app-bar>
+  <v-app-bar elevation="0">
     <template v-slot:prepend>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon icon="mdi-cog" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     </template>
 
     <v-app-bar-title>Todo</v-app-bar-title>
@@ -29,6 +29,7 @@ export default {
 </script>
 
 <style>
+/*noinspection CssUnusedSymbol*/
 .v-navigation-drawer {
   height: 90vh !important;
 }

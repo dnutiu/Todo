@@ -9,7 +9,7 @@
       rounded="xl"
       active-class="asd"
       class="task-item"
-      @click="handleClick"
+      @click.stop="handleClick(item) as MouseEvent"
     >
       <template v-slot:prepend>
         <v-list-item-action start>
@@ -46,14 +46,15 @@ export default defineComponent({
     return { tasksStore: tasksStore }
   },
   methods: {
-    handleDone(task: Task) {
-      this.tasksStore.updateTask(task)
+    async handleDone(task: Task) {
+      await this.tasksStore.updateTask(task)
     },
-    handleClick() {
+    async handleClick(task: Task): Promise<void> {
       let activeItems = document.querySelectorAll("#task-list > .v-list-item--active")
       for (let item of activeItems) {
         item.classList.remove("v-list-item--active")
       }
+      await this.tasksStore.setSelected(task)
     }
   }
 })

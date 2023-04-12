@@ -42,9 +42,10 @@ export default defineComponent({
           this.taskNameErrorMessage = "Task Name is required."
           return
         }
-        await this.tasksStore.addTask({
+        let task = await this.tasksStore.addTask({
           title: taskTitle
         })
+        await this.tasksStore.setSelected(task)
       } finally {
         this.taskName = ""
         let activeItems = document.querySelectorAll("#task-list > .v-list-item--active")

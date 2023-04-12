@@ -20,7 +20,7 @@
       <v-divider vertical></v-divider>
       <!--      Hide this when size is small and redirect directly to task-->
       <v-col md="4">
-        <h1>da</h1>
+        <TaskDetailsView />
       </v-col>
     </v-row>
   </v-container>
@@ -31,10 +31,11 @@ import TasksListView from "@/components/TaskListView/TasksListView.vue"
 import { defineComponent } from "vue"
 import { useTasksStore } from "@/stores/tasks"
 import NewTask from "@/components/TaskListView/NewTask.vue"
+import TaskDetailsView from "@/components/TaskListView/TaskDetailsView.vue"
 
 export default defineComponent({
   name: "HomeView.vue",
-  components: { NewTask, TasksListView },
+  components: { TaskDetailsView, NewTask, TasksListView },
   setup() {
     const tasksStore = useTasksStore()
     return { tasksStore: tasksStore }

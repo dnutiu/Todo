@@ -19,7 +19,7 @@ export const useTasksStore = defineStore("tasks", {
       task.subtitle = task.subtitle || ""
       task.createdDateMs = task.createdDateMs || new Date().getTime()
 
-      this.tasks.push(task)
+      this.tasks.unshift(task)
       this.taskIdCounter += 1
     },
     deleteTaskById(taskId: number) {

@@ -51,7 +51,7 @@ export default defineComponent({
         for (let item of activeItems) {
           item.classList.remove("v-list-item--active")
         }
-        let lastItem = document.querySelector("#task-list > div:last-child") as HTMLElement
+        let lastItem = document.querySelector("#task-list > div:nth-child(2)") as HTMLElement
         lastItem.classList.add("v-list-item--active")
       }
     }

@@ -9,6 +9,7 @@
       rounded="xl"
       active-class="asd"
       class="task-item"
+      @click="handleClick"
     >
       <template v-slot:prepend>
         <v-list-item-action start>
@@ -47,6 +48,12 @@ export default defineComponent({
   methods: {
     handleDone(task: Task) {
       this.tasksStore.updateTask(task)
+    },
+    handleClick() {
+      let activeItems = document.querySelectorAll("#task-list > .v-list-item--active")
+      for (let item of activeItems) {
+        item.classList.remove("v-list-item--active")
+      }
     }
   }
 })

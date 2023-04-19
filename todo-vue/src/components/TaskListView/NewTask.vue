@@ -17,7 +17,6 @@
 <script lang="ts">
 import { defineComponent } from "vue"
 import { useTasksStore } from "@/stores/tasks"
-import { Task } from "@/domain/task"
 
 export default defineComponent({
   name: "NewTask",
@@ -43,7 +42,9 @@ export default defineComponent({
           this.taskNameErrorMessage = "Task Name is required."
           return
         }
-        let task = await this.tasksStore.addTask(new Task(taskTitle))
+        let task = await this.tasksStore.addTask({
+          title: taskTitle
+        })
         await this.tasksStore.setSelected(task)
       } finally {
         this.taskName = ""

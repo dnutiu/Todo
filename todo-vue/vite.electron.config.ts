@@ -9,14 +9,14 @@ import vuetify from "vite-plugin-vuetify";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(), vueJsx(), vuetify({ autoImport: true })],
-  base: path.resolve(__dirname, "../todo-electron/dist"),
+  base: path.resolve(__dirname, "electron/dist"),
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url))
     }
   },
   build: {
-    outDir: "../todo-electron/dist",
+    outDir: "electron/dist",
     emptyOutDir: true
   },
   define: {

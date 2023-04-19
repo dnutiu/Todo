@@ -1,11 +1,11 @@
 import { defineStore } from "pinia"
-import type { Task } from "@/domain/task"
+import type { ITask, Task } from "@/domain/task"
 import _ from "lodash"
 
 export interface TaskStoreState {
   taskIdCounter: number
-  selectedTask: Task | null
-  tasks: Task[]
+  selectedTask: ITask | null
+  tasks: ITask[]
 }
 
 export const useTasksStore = defineStore("tasks", {
@@ -15,10 +15,10 @@ export const useTasksStore = defineStore("tasks", {
     tasks: []
   }),
   getters: {
-    getTasks: (state): Task[] => {
+    getTasks: (state): ITask[] => {
       return state.tasks
     },
-    getSelectedTask: (state): Task | null => {
+    getSelectedTask: (state): ITask | null => {
       return state.selectedTask
     }
   },
@@ -30,23 +30,20 @@ export const useTasksStore = defineStore("tasks", {
       this.selectedTask = task
     },
     async addTask(task: Task): Promise<Task> {
+      // modify task id
       task.id = this.taskIdCounter
-      task.isDone = task.isDone || false
-      task.subtitle = task.subtitle || ""
-      task.createdDateMs = task.createdDateMs || new Date().getTime()
-
-      this.tasks.unshift(task)
+      this.tasks.unshift(_.clone(task))
       this.taskIdCounter += 1
       return task
     },
     async deleteTaskById(taskId: number) {
-      const index = _.findIndex(this.tasks, (item: Task) => item.id === taskId)
+      const index = _.findIndex(this.tasks, (item: ITask) => item.id === taskId)
       if (index != -1) {
         this.tasks.splice(index, 1)
       }
     },
     async updateTask(task: Task) {
-      const index = _.findIndex(this.tasks, (item: Task) => item.id === task.id)
+      const index = _.findIndex(this.tasks, (item: ITask) => item.id === task.id)
       if (index != -1) {
         this.tasks.splice(index, 1, task)
         if (this.selectedTask?.id == task.id) {

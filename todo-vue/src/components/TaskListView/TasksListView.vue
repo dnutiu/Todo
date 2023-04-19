@@ -13,7 +13,7 @@
     >
       <template v-slot:prepend>
         <v-list-item-action start>
-          <DoneCheckbox :item="item" @task:statusChanged="handleDone" />
+          <TaskDoneButton :item="item" />
         </v-list-item-action>
       </template>
 
@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue"
-import DoneCheckbox from "@/components/TaskListView/DoneCheckbox.vue"
+import TaskDoneButton from "@/components/TaskListView/TaskDoneButton.vue"
 import type { Task } from "@/domain/task"
 import { useTasksStore } from "@/stores/tasks"
 import { id } from "vuetify/locale"
@@ -40,15 +40,12 @@ export default defineComponent({
       return id
     }
   },
-  components: { DoneCheckbox },
+  components: { TaskDoneButton },
   setup() {
     const tasksStore = useTasksStore()
     return { tasksStore: tasksStore }
   },
   methods: {
-    async handleDone(task: Task) {
-      await this.tasksStore.updateTask(task)
-    },
     async handleClick(task: Task): Promise<void> {
       let activeItems = document.querySelectorAll("#task-list > .v-list-item--active")
       for (let item of activeItems) {

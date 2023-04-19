@@ -6,18 +6,22 @@
 import type { PropType } from "vue"
 import { defineComponent } from "vue"
 import type { Task } from "@/domain/task"
+import { useTasksStore } from "@/stores/tasks"
 
 const iconUnchecked = "mdi-checkbox-blank-circle-outline"
 const iconChecked = "mdi-checkbox-marked-circle-outline"
 
 export default defineComponent({
-  name: "DoneCheckbox",
-  emits: ["task:statusChanged"],
+  name: "TaskDoneButton",
   props: {
     item: {
       type: Object as PropType<Task>,
       required: true
     }
+  },
+  setup() {
+    const tasksStore = useTasksStore()
+    return { tasksStore: tasksStore }
   },
   computed: {
     icon() {
@@ -25,10 +29,10 @@ export default defineComponent({
     }
   },
   methods: {
-    handleTaskStatusUpdate() {
+    async handleTaskStatusUpdate() {
       let clonedItem = { ...this.item }
       clonedItem.isDone = !clonedItem.isDone
-      this.$emit("task:statusChanged", clonedItem)
+      await this.tasksStore.updateTask(clonedItem)
     }
   }
 })

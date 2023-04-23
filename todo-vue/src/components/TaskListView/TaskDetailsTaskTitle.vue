@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex align-center" v-if="selectedTask">
+  <div class="d-flex align-center">
     <TaskDoneButton :item="selectedTask" />
     <span class="font-weight-bold">{{ selectedTask?.title }}</span>
     <v-spacer />
@@ -12,6 +12,7 @@
 import TaskDoneButton from "@/components/TaskListView/TaskDoneButton.vue"
 import { defineComponent } from "vue"
 import { useTasksStore } from "@/stores/tasks"
+import { emptyTask } from "@/domain/task"
 
 export default defineComponent({
   name: "TaskDetailsTaskTitle",
@@ -22,7 +23,7 @@ export default defineComponent({
   },
   computed: {
     selectedTask() {
-      return this.tasksStore.getSelectedTask
+      return this.tasksStore.getSelectedTask || emptyTask
     }
   }
 })

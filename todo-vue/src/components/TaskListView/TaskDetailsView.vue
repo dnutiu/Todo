@@ -4,9 +4,7 @@
       <v-col v-if="selectedTask" :key="selectedTask.id">
         <TaskDetailsTaskTitle />
         <v-divider></v-divider>
-        <div class="d-flex align-center">
-          <v-textarea label="Description"></v-textarea>
-        </div>
+        <TaskDetailsTaskDescription />
         <div class="d-flex align-center">
           Debug info:
           {{ selectedTask }}
@@ -30,10 +28,11 @@
 import { defineComponent } from "vue"
 import { useTasksStore } from "@/stores/tasks"
 import TaskDetailsTaskTitle from "@/components/TaskListView/TaskDetailsTaskTitle.vue"
+import TaskDetailsTaskDescription from "@/components/TaskListView/TaskDetailsTaskDescription.vue"
 
 export default defineComponent({
   name: "TaskDetailsView",
-  components: { TaskDetailsTaskTitle },
+  components: { TaskDetailsTaskDescription, TaskDetailsTaskTitle },
   setup() {
     const tasksStore = useTasksStore()
     return { tasksStore: tasksStore }

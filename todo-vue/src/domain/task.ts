@@ -5,3 +5,10 @@ export interface Task {
   description: string
   isDone: boolean
 }
+
+export const emptyTask = {
+  title: "",
+  createdDateMs: 0,
+  description: "",
+  isDone: false
+}

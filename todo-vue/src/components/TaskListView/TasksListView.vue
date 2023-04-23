@@ -1,5 +1,5 @@
 <template>
-  <v-list :lines="'two'" id="task-list">
+  <v-list :lines="'one'" id="task-list">
     <v-list-subheader>Tasks</v-list-subheader>
 
     <v-list-item
@@ -20,7 +20,7 @@
       <v-list-item-title>{{ item.title }}</v-list-item-title>
 
       <v-list-item-subtitle>
-        {{ item.description }}
+        <span class="ellipsis-text-overflow">{{ item.description }}</span>
       </v-list-item-subtitle>
     </v-list-item>
   </v-list>
@@ -57,4 +57,9 @@ export default defineComponent({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.ellipsis-text-overflow {
+  max-width: 90vw;
+  text-overflow: ellipsis;
+}
+</style>

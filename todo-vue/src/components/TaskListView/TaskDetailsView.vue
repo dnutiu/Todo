@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col>
+      <v-col v-if="selectedTask">
         <div class="d-flex align-center">
           <TaskDoneButton v-if="selectedTask" :item="selectedTask" />
           <span class="font-weight-bold">{{ selectedTask?.title }}</span>
@@ -10,9 +10,22 @@
           <v-btn icon="mdi-delete" variant="text"></v-btn>
         </div>
         <v-divider></v-divider>
-
-        Debug info:
-        {{ selectedTask }}
+        <div class="d-flex align-center">
+          <v-textarea label="Description"></v-textarea>
+        </div>
+        <div class="d-flex align-center">
+          Debug info:
+          {{ selectedTask }}
+        </div>
+      </v-col>
+      <v-col v-if="!selectedTask">
+        <div class="d-flex flex-column align-center align-content-center">
+          <v-icon
+            class="task-details-empty-icon text-grey-darken-1"
+            icon="mdi-robot-happy-outline"
+          />
+          <p>No task selected</p>
+        </div>
       </v-col>
     </v-row>
   </v-container>
@@ -38,4 +51,8 @@ export default defineComponent({
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.task-details-empty-icon {
+  font-size: 15em;
+}
+</style>

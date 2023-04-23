@@ -43,7 +43,10 @@ export default defineComponent({
           return
         }
         let task = await this.tasksStore.addTask({
-          title: taskTitle
+          title: taskTitle,
+          createdDateMs: new Date().getTime(),
+          description: "",
+          isDone: false
         })
         await this.tasksStore.setSelected(task)
       } finally {

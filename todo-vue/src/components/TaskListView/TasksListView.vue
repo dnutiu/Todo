@@ -20,7 +20,7 @@
       <v-list-item-title>{{ item.title }}</v-list-item-title>
 
       <v-list-item-subtitle>
-        {{ item.subtitle }}
+        {{ item.description }}
       </v-list-item-subtitle>
     </v-list-item>
   </v-list>

@@ -32,7 +32,7 @@ export const useTasksStore = defineStore("tasks", {
     async addTask(task: Task): Promise<Task> {
       task.id = this.taskIdCounter
       task.isDone = task.isDone || false
-      task.subtitle = task.subtitle || ""
+      task.description = task.description || ""
       task.createdDateMs = task.createdDateMs || new Date().getTime()
 
       this.tasks.unshift(task)

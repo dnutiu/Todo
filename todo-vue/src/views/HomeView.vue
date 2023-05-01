@@ -2,7 +2,8 @@
   <v-container fluid>
     <v-row>
       <v-col sm="12" md="4">
-        <h1>Da</h1>
+        <h1>Debug Panel</h1>
+        <v-btn @click="test">Notification Test</v-btn>
       </v-col>
       <v-divider vertical></v-divider>
       <v-col sm="12" md="4">
@@ -39,6 +40,16 @@ export default defineComponent({
   setup() {
     const tasksStore = useTasksStore()
     return { tasksStore: tasksStore }
+  },
+  methods: {
+    test() {
+      Notification.requestPermission().then((result) => {
+        console.log(result)
+        const text = `HEY! Your task is now overdue.`
+        const notification = new Notification("To do list", { body: text })
+        notification.onclick = () => {}
+      })
+    }
   },
   created() {
     // Add random tasks.

@@ -1,7 +1,12 @@
 # Todo
 
-A free and open source Todo application
-
+An experiment to write a ToDo Application with Vue3, Vuetify, Electron and Typescript.
 ---
 
-Brewed by [nuculabs.dev](https://nuculabs.dev)
+
+Demo:
+
+
+![](./demo.gif)
+
+By [nuculabs.dev](https://nuculabs.dev)

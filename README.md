@@ -1,6 +1,6 @@
 # Todo
 
-An experiment to write a ToDo Application with Vue3, Vuetify, Electron and Typescript.
+A ToDo Application experiment with Vue3, Vuetify, Electron and Typescript.
 ---
 
 
